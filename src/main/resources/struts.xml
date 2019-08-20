@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
+
+
+    <!-- 创建一个default包，继承自Struts2的struts-default包 -->
+    <package name="default" namespace="/" extends="struts-default">
+
+        <!--全局结果共享视图-->
+        <global-results>
+            <result name="error">fail.jsp</result>
+            <result name="toLogin" type="redirect">login.jsp</result>
+        </global-results>
+
+
+
+
+
+        <!-- 接收处理用户的/helloWorld.action请求 ，
+             并根据返回结果，完成跳转 -->
+        <action name="helloWorld" class="StrutsDemo.HelloWorldAction">
+            <!-- 结果为"helloWorld"时，跳转至helloWorld.jsp页面 -->
+            <result name="helloWorld">helloWorld.jsp</result>
+        </action>
+
+
+
+        <action name="login" class="StrutsDemo.LoginAction" method="execute">
+            <!--结果为"success"时,跳转至Success.jsp页面-->
+            <result name="success">success.jsp</result>
+            <!--结果为"error"时,跳转至fail.jsp页面-->
+            <result name="error">fail.jsp</result>
+
+            <result name="input">login.jsp</result>
+        </action>
+
+
+        <action name="Iter" class="StrutsDemo.IteratorAction">
+            <result name="success">success.jsp</result>
+        </action>
+
+
+
+        <action name="House" class="StrutsDemo.HouseAction">
+            <result name="input">House.jsp</result>
+            <result name="success">success.jsp</result>
+            <result name="error">fail.jsp</result>
+        </action>
+
+        <action name="register" class="StrutsDemo.UsersAction" method="register">
+            <result name="success" type="redirect">UserList.action</result>
+            <result name="error">fail.jsp</result>
+        </action>
+
+
+        <action name="UserList" class="StrutsDemo.UsersAction">
+            <result name="success">Users.jsp</result>
+        </action>
+
+
+        <action name="test_*" class="StrutsDemo.TestAction" method="{1}">
+             <result name="success">/page/result_{1}.jsp</result>
+        </action>
+
+
+
+
+
+
+    </package>
+
+
+
+</struts>
